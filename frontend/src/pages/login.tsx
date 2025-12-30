@@ -42,11 +42,6 @@ export default function Login() {
           <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 sm:space-y-8 transform transition-all duration-300 hover:shadow-3xl">
             {/* Header */}
             <div className="text-center">
-              <div className="mx-auto h-14 w-14 sm:h-16 sm:w-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transform transition-transform hover:scale-110 duration-300">
-                <svg className="h-8 w-8 sm:h-10 sm:w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-              </div>
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                 Welcome Back!
               </h2>

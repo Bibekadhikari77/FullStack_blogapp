@@ -222,7 +222,7 @@ export default function Home() {
             {/* Search Bar */}
             <form onSubmit={handleSearch} className="max-w-2xl mx-auto px-4">
               <div className="relative flex flex-col sm:flex-row items-stretch group gap-2 sm:gap-0">
-                <div className="absolute left-6 sm:left-4 top-4 sm:top-auto text-gray-400 group-focus-within:text-primary-600 transition-colors pointer-events-none">
+                <div className="absolute left-8 sm:left-4 top-1/2 sm:top-1/2 transform -translate-y-1/2 text-gray-400 group-focus-within:text-primary-600 transition-colors pointer-events-none z-10">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
@@ -232,22 +232,11 @@ export default function Home() {
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   placeholder="Search posts..."
-                  className="flex-1 pl-12 pr-12 sm:pr-4 py-3 sm:py-4 text-gray-900 rounded-lg sm:rounded-l-lg sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all shadow-md text-sm sm:text-base"
+                  className="flex-1 pl-14 pr-4 py-3 sm:py-4 text-gray-900 rounded-lg sm:rounded-l-lg sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all shadow-md text-sm sm:text-base"
                 />
-                {search && (
-                  <button
-                    type="button"
-                    onClick={() => setSearch('')}
-                    className="absolute right-6 sm:right-auto sm:left-auto top-3 sm:top-auto sm:right-32 text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </button>
-                )}
                 <button
                   type="submit"
-                  className="px-6 sm:px-8 py-3 sm:py-4 bg-primary-700 hover:bg-primary-900 rounded-lg sm:rounded-l-none sm:rounded-r-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-blue-600 hover:bg-blue-700 rounded-lg sm:rounded-l-none sm:rounded-r-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />

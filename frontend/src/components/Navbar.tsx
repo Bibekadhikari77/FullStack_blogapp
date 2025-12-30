@@ -9,12 +9,17 @@ const Navbar: React.FC = () => {
   const router = useRouter();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  const handleLogoClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    router.push('/', undefined, { shallow: false });
+  };
+
   return (
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 shadow-lg border-b border-amber-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Link href="/" className="flex items-center">
+            <Link href="/" onClick={handleLogoClick} className="flex items-center">
               <Image src="/logo.svg" alt="Logo" width={60} height={60} className="w-12 h-12 sm:w-16 sm:h-16" />
             </Link>
           </div>
@@ -133,7 +138,7 @@ const Navbar: React.FC = () => {
                 </Link>
                 <Link
                   href="/register"
-                  className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base font-medium hover:from-amber-700 hover:to-orange-700 transition-colors shadow-sm"
+                  className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base font-medium hover:from-blue-700 hover:to-blue-800 transition-colors shadow-sm"
                 >
                   Sign Up
                 </Link>
@@ -251,7 +256,7 @@ const Navbar: React.FC = () => {
                 </Link>
                 <Link
                   href="/register"
-                  className="block px-3 py-2 rounded-md text-base font-medium bg-gradient-to-r from-amber-600 to-orange-600 text-white hover:from-amber-700 hover:to-orange-700"
+                  className="block px-3 py-2 rounded-md text-base font-medium bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:from-blue-700 hover:to-blue-800"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Sign Up
