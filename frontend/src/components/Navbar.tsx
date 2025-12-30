@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '../contexts/AuthContext';
@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 const Navbar: React.FC = () => {
   const { user, logout, isAuthenticated, isAuthor, isAdmin } = useAuth();
   const router = useRouter();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 bg-gradient-to-r from-amber-50 via-orange-50 to-amber-50 shadow-lg border-b border-amber-100">
@@ -14,14 +15,15 @@ const Navbar: React.FC = () => {
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center">
-              <Image src="/logo.svg" alt="Logo" width={60} height={60} className="w-16 h-16" />
+              <Image src="/logo.svg" alt="Logo" width={60} height={60} className="w-12 h-12 sm:w-16 sm:h-16" />
             </Link>
           </div>
 
-          <div className="hidden md:flex md:space-x-12">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex md:space-x-8 lg:space-x-12">
             <Link
               href="/"
-              className={`inline-flex items-center px-1 pt-1 text-base font-medium ${
+              className={`inline-flex items-center px-1 pt-1 text-sm lg:text-base font-medium ${
                 router.pathname === '/' ? 'text-blue-700 border-b-2 border-blue-600' : 'text-gray-700 hover:text-blue-600'
               }`}
             >
@@ -29,7 +31,7 @@ const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/categories"
-              className={`inline-flex items-center px-1 pt-1 text-base font-medium ${
+              className={`inline-flex items-center px-1 pt-1 text-sm lg:text-base font-medium ${
                 router.pathname === '/categories' ? 'text-blue-700 border-b-2 border-blue-600' : 'text-gray-700 hover:text-blue-600'
               }`}
             >
@@ -37,7 +39,7 @@ const Navbar: React.FC = () => {
             </Link>
             <Link
               href="/about"
-              className={`inline-flex items-center px-1 pt-1 text-base font-medium ${
+              className={`inline-flex items-center px-1 pt-1 text-sm lg:text-base font-medium ${
                 router.pathname === '/about' ? 'text-blue-700 border-b-2 border-blue-600' : 'text-gray-700 hover:text-blue-600'
               }`}
             >
@@ -45,7 +47,8 @@ const Navbar: React.FC = () => {
             </Link>
           </div>
 
-          <div className="flex items-center space-x-4">
+          {/* Desktop User Menu */}
+          <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
             {isAuthenticated ? (
               <>
                 {isAuthor && (
@@ -77,7 +80,7 @@ const Navbar: React.FC = () => {
                         {user?.name?.charAt(0).toUpperCase()}
                       </div>
                     )}
-                    <span className="text-base font-medium">{user?.name}</span>
+                    <span className="hidden lg:inline text-sm lg:text-base font-medium">{user?.name}</span>
                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
@@ -85,7 +88,7 @@ const Navbar: React.FC = () => {
                   <div className="absolute right-0 mt-0 w-48 bg-white rounded-md shadow-lg py-1 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10 border border-gray-200">
                     <Link
                       href="/profile"
-                      className="block px-4 py-2 text-base text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
                     >
                       <div className="flex items-center space-x-2">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -96,7 +99,7 @@ const Navbar: React.FC = () => {
                     </Link>
                     <Link
                       href="/my-posts"
-                      className="block px-4 py-2 text-base text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
+                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-600 transition-colors"
                     >
                       <div className="flex items-center space-x-2">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -108,7 +111,7 @@ const Navbar: React.FC = () => {
                     <hr className="my-1 border-gray-200" />
                     <button
                       onClick={logout}
-                      className="block w-full text-left px-4 py-2 text-base text-red-600 hover:bg-red-50 transition-colors"
+                      className="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
                     >
                       <div className="flex items-center space-x-2">
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,13 +127,132 @@ const Navbar: React.FC = () => {
               <>
                 <Link
                   href="/login"
-                  className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-base font-medium"
+                  className="text-gray-700 hover:text-blue-600 px-2 lg:px-3 py-2 rounded-md text-sm lg:text-base font-medium"
                 >
                   Login
                 </Link>
                 <Link
                   href="/register"
-                  className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-4 py-2 rounded-md text-base font-medium hover:from-amber-700 hover:to-orange-700 transition-colors shadow-sm"
+                  className="bg-gradient-to-r from-amber-600 to-orange-600 text-white px-3 lg:px-4 py-2 rounded-md text-sm lg:text-base font-medium hover:from-amber-700 hover:to-orange-700 transition-colors shadow-sm"
+                >
+                  Sign Up
+                </Link>
+              </>
+            )}
+          </div>
+
+          {/* Mobile Menu Button */}
+          <div className="md:hidden flex items-center">
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-600 hover:bg-gray-100 focus:outline-none"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                {mobileMenuOpen ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden border-t border-amber-200">
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            <Link
+              href="/"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                router.pathname === '/' ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+              }`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Home
+            </Link>
+            <Link
+              href="/categories"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                router.pathname === '/categories' ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+              }`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              Categories
+            </Link>
+            <Link
+              href="/about"
+              className={`block px-3 py-2 rounded-md text-base font-medium ${
+                router.pathname === '/about' ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-50 hover:text-blue-600'
+              }`}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              About
+            </Link>
+
+            {isAuthenticated ? (
+              <>
+                {isAuthor && (
+                  <Link
+                    href="/posts/create"
+                    className="block px-3 py-2 rounded-md text-base font-medium bg-blue-600 text-white hover:bg-blue-700"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Create Post
+                  </Link>
+                )}
+                {isAdmin && (
+                  <Link
+                    href="/admin"
+                    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Admin
+                  </Link>
+                )}
+                <Link
+                  href="/profile"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Profile
+                </Link>
+                <Link
+                  href="/my-posts"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  My Posts
+                </Link>
+                <button
+                  onClick={() => {
+                    logout();
+                    setMobileMenuOpen(false);
+                  }}
+                  className="block w-full text-left px-3 py-2 rounded-md text-base font-medium text-red-600 hover:bg-red-50"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <>
+                <Link
+                  href="/login"
+                  className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Login
+                </Link>
+                <Link
+                  href="/register"
+                  className="block px-3 py-2 rounded-md text-base font-medium bg-gradient-to-r from-amber-600 to-orange-600 text-white hover:from-amber-700 hover:to-orange-700"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Sign Up
                 </Link>
@@ -138,7 +260,7 @@ const Navbar: React.FC = () => {
             )}
           </div>
         </div>
-      </div>
+      )}
     </nav>
   );
 };

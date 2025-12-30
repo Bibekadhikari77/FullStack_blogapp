@@ -212,17 +212,17 @@ export default function Home() {
               </span>
             </div>
             
-            <h1 className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight animate-fadeIn">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold mb-4 md:mb-6 leading-tight animate-fadeIn px-4">
               Welcome to <span className="bg-gradient-to-r from-yellow-200 to-pink-200 bg-clip-text text-transparent">BlogPlatform</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-10 text-white/90 max-w-3xl mx-auto leading-relaxed animate-slideInRight">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 md:mb-10 text-white/90 max-w-3xl mx-auto leading-relaxed animate-slideInRight px-4">
               Discover stories, thinking, and expertise from writers on any topic. Share your voice with the world.
             </p>
             
             {/* Search Bar */}
-            <form onSubmit={handleSearch} className="max-w-2xl mx-auto">
-              <div className="relative flex items-center group">
-                <div className="absolute left-4 text-gray-400 group-focus-within:text-primary-600 transition-colors">
+            <form onSubmit={handleSearch} className="max-w-2xl mx-auto px-4">
+              <div className="relative flex flex-col sm:flex-row items-stretch group gap-2 sm:gap-0">
+                <div className="absolute left-6 sm:left-4 top-4 sm:top-auto text-gray-400 group-focus-within:text-primary-600 transition-colors pointer-events-none">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
@@ -231,14 +231,14 @@ export default function Home() {
                   type="text"
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
-                  placeholder="Search posts by title, content, or tags..."
-                  className="flex-1 pl-12 pr-4 py-4 text-gray-900 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all shadow-md"
+                  placeholder="Search posts..."
+                  className="flex-1 pl-12 pr-12 sm:pr-4 py-3 sm:py-4 text-gray-900 rounded-lg sm:rounded-l-lg sm:rounded-r-none focus:outline-none focus:ring-2 focus:ring-primary-500 transition-all shadow-md text-sm sm:text-base"
                 />
                 {search && (
                   <button
                     type="button"
                     onClick={() => setSearch('')}
-                    className="absolute right-32 text-gray-400 hover:text-gray-600 transition-colors"
+                    className="absolute right-6 sm:right-auto sm:left-auto top-3 sm:top-auto sm:right-32 text-gray-400 hover:text-gray-600 transition-colors"
                   >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -247,12 +247,12 @@ export default function Home() {
                 )}
                 <button
                   type="submit"
-                  className="px-8 py-4 bg-primary-700 hover:bg-primary-900 rounded-r-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg flex items-center gap-2"
+                  className="px-6 sm:px-8 py-3 sm:py-4 bg-primary-700 hover:bg-primary-900 rounded-lg sm:rounded-l-none sm:rounded-r-lg font-semibold transition-all duration-200 shadow-md hover:shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                   </svg>
-                  Search
+                  <span className="sm:inline">Search</span>
                 </button>
               </div>
             </form>
@@ -260,10 +260,10 @@ export default function Home() {
         </div>
 
         {/* Main Content */}
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-          <div className="flex flex-col lg:flex-row gap-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-12">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
             {/* Sidebar */}
-            <aside className="lg:w-64 flex-shrink-0">
+            <aside className="w-full lg:w-64 flex-shrink-0 order-2 lg:order-1">
               <div className="bg-white rounded-xl shadow-lg p-6 mb-6 border border-gray-100">
                 <div className="flex items-center mb-4">
 
@@ -394,10 +394,10 @@ export default function Home() {
               )}
 
               {loading ? (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                   {[...Array(6)].map((_, i) => (
-                    <div key={i} className="bg-white rounded-lg shadow-md p-6 animate-pulse">
-                      <div className="h-48 bg-gray-200 rounded mb-4"></div>
+                    <div key={i} className="bg-white rounded-lg shadow-md p-4 sm:p-6 animate-pulse">
+                      <div className="h-40 sm:h-48 bg-gray-200 rounded mb-4"></div>
                       <div className="h-4 bg-gray-200 rounded mb-2"></div>
                       <div className="h-4 bg-gray-200 rounded w-2/3"></div>
                     </div>
@@ -405,7 +405,7 @@ export default function Home() {
                 </div>
               ) : posts.length > 0 ? (
                 <>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {posts.map((post) => (
                       <PostCard key={post._id} post={post} />
                     ))}

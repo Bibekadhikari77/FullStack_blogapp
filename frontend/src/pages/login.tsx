@@ -36,27 +36,27 @@ export default function Login() {
         <title>Login - BlogPlatform</title>
       </Head>
 
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-12 px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 py-8 sm:py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-md w-full">
           {/* Card Container */}
-          <div className="bg-white rounded-2xl shadow-2xl p-8 space-y-8 transform transition-all duration-300 hover:shadow-3xl">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-8 space-y-6 sm:space-y-8 transform transition-all duration-300 hover:shadow-3xl">
             {/* Header */}
             <div className="text-center">
-              <div className="mx-auto h-16 w-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 transform transition-transform hover:scale-110 duration-300">
-                <svg className="h-10 w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="mx-auto h-14 w-14 sm:h-16 sm:w-16 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 transform transition-transform hover:scale-110 duration-300">
+                <svg className="h-8 w-8 sm:h-10 sm:w-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                 </svg>
               </div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                 Welcome Back!
               </h2>
-              <p className="text-gray-600">
+              <p className="text-sm sm:text-base text-gray-600">
                 Sign in to continue to your account
               </p>
             </div>
 
             {/* Form */}
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form className="space-y-5 sm:space-y-6" onSubmit={handleSubmit}>
               {/* Email Input */}
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
@@ -64,7 +64,7 @@ export default function Login() {
                 </label>
                 <div className="relative">
                   <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-4 w-4 sm:h-5 sm:w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
                     </svg>
                   </div>
@@ -76,7 +76,7 @@ export default function Login() {
                     required
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    className="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-gray-900 placeholder-gray-400"
+                    className="block w-full pl-9 sm:pl-10 pr-3 py-2.5 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 text-sm sm:text-base text-gray-900 placeholder-gray-400"
                     placeholder="you@example.com"
                   />
                 </div>

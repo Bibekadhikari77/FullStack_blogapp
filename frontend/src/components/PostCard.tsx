@@ -97,10 +97,10 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
   };
 
   return (
-    <div className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border border-gray-100">
+    <div className="group bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 md:hover:-translate-y-2 border border-gray-100">
       <Link href={`/posts/${post.slug}`} className="relative block overflow-hidden">
         {post.featuredImage ? (
-          <div className="relative h-56 overflow-hidden">
+          <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
             <img
               src={post.featuredImage}
               alt={post.title}
@@ -109,7 +109,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
           </div>
         ) : (
-          <div className="relative h-56 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center overflow-hidden">
+          <div className="relative h-48 sm:h-56 md:h-64 bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center overflow-hidden">
             <div className="absolute inset-0 opacity-20">
               <div className="absolute top-0 -left-4 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
               <div className="absolute bottom-0 right-0 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000" />
@@ -120,8 +120,8 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
           </div>
         )}
       </Link>
-      <div className="p-6">
-        <div className="flex items-center space-x-2 mb-3">
+      <div className="p-4 sm:p-5 md:p-6">
+        <div className="flex items-center space-x-2 mb-3 flex-wrap gap-y-2">
           <Link
             href={`/category/${post.category.slug}`}
             className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-gradient-to-r from-primary-50 to-purple-50 text-primary-700 hover:from-primary-100 hover:to-purple-100 transition-all"
@@ -138,12 +138,12 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
         </div>
 
         <Link href={`/posts/${post.slug}`}>
-          <h2 className="text-xl font-bold text-gray-900 mb-3 hover:text-primary-600 transition-colors line-clamp-2 leading-tight group-hover:text-primary-600">
+          <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-2 sm:mb-3 hover:text-primary-600 transition-colors line-clamp-2 leading-tight group-hover:text-primary-600">
             {post.title}
           </h2>
         </Link>
 
-        <p className="text-gray-600 text-sm mb-4 line-clamp-3 leading-relaxed">
+        <p className="text-gray-600 text-sm mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3 leading-relaxed">
           {post.excerpt}
         </p>
 
@@ -161,32 +161,32 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
           </div>
         )}
 
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-          <div className="flex items-center space-x-2.5">
+        <div className="flex items-center justify-between pt-3 sm:pt-4 border-t border-gray-100">
+          <div className="flex items-center space-x-2">
             {post.author.avatar ? (
               <img
                 src={post.author.avatar}
                 alt={post.author.name}
-                className="w-9 h-9 rounded-full object-cover ring-2 ring-primary-100 ring-offset-2"
+                className="w-8 h-8 sm:w-9 sm:h-9 rounded-full object-cover ring-2 ring-primary-100 ring-offset-2"
               />
             ) : (
-              <div className="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white text-sm font-bold shadow-md">
+              <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center text-white text-xs sm:text-sm font-bold shadow-md">
                 {post.author.name.charAt(0).toUpperCase()}
               </div>
             )}
-            <span className="text-sm font-semibold text-gray-700">{post.author.name}</span>
+            <span className="text-xs sm:text-sm font-semibold text-gray-700 truncate max-w-[100px] sm:max-w-none">{post.author.name}</span>
           </div>
 
-          <div className="flex items-center space-x-4 text-sm text-gray-500">
+          <div className="flex items-center space-x-3 sm:space-x-4 text-xs sm:text-sm text-gray-500">
             <button
               onClick={handleLike}
-              className={`flex items-center space-x-1.5 transition-all transform hover:scale-110 ${
+              className={`flex items-center space-x-1 sm:space-x-1.5 transition-all transform hover:scale-110 ${
                 liked ? 'text-red-500' : 'text-gray-500 hover:text-red-500'
               }`}
               title={liked ? 'Unlike' : 'Like'}
             >
               <svg
-                className="w-5 h-5"
+                className="w-4 h-4 sm:w-5 sm:h-5"
                 fill={liked ? 'currentColor' : 'none'}
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -198,15 +198,15 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
                   d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
                 />
               </svg>
-              <span className="font-semibold">{currentLikesCount}</span>
+              <span className="font-semibold text-xs sm:text-sm">{currentLikesCount}</span>
             </button>
             
             <button
               onClick={handleCommentClick}
-              className="flex items-center space-x-1.5 text-gray-500 hover:text-primary-600 transition-all transform hover:scale-110"
+              className="flex items-center space-x-1 sm:space-x-1.5 text-gray-500 hover:text-primary-600 transition-all transform hover:scale-110"
               title="Comments"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -214,11 +214,11 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
                   d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
                 />
               </svg>
-              <span className="font-semibold">{post.commentsCount || 0}</span>
+              <span className="font-semibold text-xs sm:text-sm">{post.commentsCount || 0}</span>
             </button>
             
-            <div className="flex items-center space-x-1.5 text-gray-500" title="Views">
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="flex items-center space-x-1 sm:space-x-1.5 text-gray-500" title="Views">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -232,7 +232,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
                   d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
                 />
               </svg>
-              <span className="font-semibold">{post.views}</span>
+              <span className="font-semibold text-xs sm:text-sm">{post.views}</span>
             </div>
           </div>
         </div>

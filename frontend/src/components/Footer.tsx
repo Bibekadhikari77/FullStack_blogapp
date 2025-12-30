@@ -10,18 +10,18 @@ const Footer: React.FC = () => {
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl" />
       </div>
       
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 mb-6 sm:mb-8">
           {/* Brand Section */}
-          <div className="md:col-span-2">
-            <h3 className="text-2xl font-bold mb-4 bg-gradient-to-r from-primary-400 to-purple-400 bg-clip-text text-transparent">
+          <div className="sm:col-span-2">
+            <h3 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 bg-gradient-to-r from-primary-400 to-purple-400 bg-clip-text text-transparent">
               BlogPlatform
             </h3>
-            <p className="text-gray-300 text-sm leading-relaxed mb-6 max-w-md">
+            <p className="text-gray-300 text-sm leading-relaxed mb-4 sm:mb-6 max-w-md">
               A modern blogging platform where you can share your thoughts, ideas, and stories with the world. Join our community of writers and readers today.
             </p>
             {/* Social Media Links */}
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-3 sm:space-x-4">
               <a href="#" className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all hover:scale-110 backdrop-blur-sm">
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
@@ -47,8 +47,8 @@ const Footer: React.FC = () => {
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-bold mb-4 text-white">Quick Links</h3>
-            <ul className="space-y-3 text-sm">
+            <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-white">Quick Links</h3>
+            <ul className="space-y-2 sm:space-y-3 text-sm">
               <li>
                 <Link href="/" className="text-gray-300 hover:text-white transition-colors flex items-center group">
                   <span className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
@@ -78,8 +78,8 @@ const Footer: React.FC = () => {
           
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-bold mb-4 text-white">Get in Touch</h3>
-            <ul className="space-y-3 text-sm text-gray-300">
+            <h3 className="text-base sm:text-lg font-bold mb-3 sm:mb-4 text-white">Get in Touch</h3>
+            <ul className="space-y-2 sm:space-y-3 text-sm text-gray-300">
               <li className="flex items-start">
                 <svg className="w-5 h-5 mr-2 mt-0.5 flex-shrink-0 text-primary-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />

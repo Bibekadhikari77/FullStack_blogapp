@@ -59,20 +59,20 @@ export default function About() {
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-primary-50/30">
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-primary-600 via-purple-600 to-primary-800 text-white py-20 overflow-hidden">
+        <div className="relative bg-gradient-to-r from-primary-600 via-purple-600 to-primary-800 text-white py-12 sm:py-16 md:py-20 overflow-hidden">
           <div className="absolute inset-0 bg-black/10"></div>
-          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
+          <div className="absolute top-0 right-0 w-64 sm:w-96 h-64 sm:h-96 bg-white/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 left-0 w-64 sm:w-96 h-64 sm:h-96 bg-purple-500/20 rounded-full blur-3xl"></div>
           
           <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto text-center">
-              <div className="flex items-center justify-center mb-6">
-                <FaInfoCircle className="text-6xl md:text-7xl mr-4 animate-fadeIn" />
-                <h1 className="text-5xl md:text-6xl font-bold animate-fadeIn">
+              <div className="flex items-center justify-center mb-4 sm:mb-6">
+                <FaInfoCircle className="text-4xl sm:text-5xl md:text-7xl mr-3 sm:mr-4 animate-fadeIn" />
+                <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold animate-fadeIn">
                   About Our Platform
                 </h1>
               </div>
-              <p className="text-xl md:text-2xl text-primary-100 animate-fadeIn animation-delay-200">
+              <p className="text-base sm:text-lg md:text-2xl text-primary-100 animate-fadeIn animation-delay-200 px-4">
                 Empowering writers to share their stories with the world
               </p>
             </div>
@@ -80,17 +80,17 @@ export default function About() {
         </div>
 
         {/* Main Content */}
-        <div className="container mx-auto px-4 py-16">
+        <div className="container mx-auto px-4 py-8 sm:py-12 md:py-16">
           <div className="max-w-4xl mx-auto">
             {/* Mission Section */}
-            <div className="bg-white rounded-2xl shadow-lg p-8 md:p-12 mb-8 hover-lift">
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-purple-500 rounded-xl flex items-center justify-center mr-4">
-                  <FaRocket className="w-6 h-6 text-white" />
+            <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 md:p-12 mb-6 sm:mb-8 hover-lift">
+              <div className="flex items-center mb-4 sm:mb-6">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary-500 to-purple-500 rounded-xl flex items-center justify-center mr-3 sm:mr-4">
+                  <FaRocket className="w-5 h-5 sm:w-6 sm:h-6 text-white" />
                 </div>
-                <h2 className="text-3xl font-bold text-gray-800">Our Mission</h2>
+                <h2 className="text-2xl sm:text-3xl font-bold text-gray-800">Our Mission</h2>
               </div>
-              <p className="text-lg text-gray-600 leading-relaxed mb-4">
+              <p className="text-base sm:text-lg text-gray-600 leading-relaxed mb-3 sm:mb-4">
                 We believe everyone has a story to tell. Our platform provides a beautiful, 
                 intuitive space for writers to create, share, and connect with readers around the globe.
               </p>
