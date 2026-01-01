@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import api from '../../utils/api';
 import { useAuth } from '../../contexts/AuthContext';
 import toast from 'react-hot-toast';
+import { FaImage, FaTimes, FaPlus, FaTag, FaBolt, FaSpinner } from 'react-icons/fa';
 
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
@@ -245,16 +246,12 @@ export default function CreatePost() {
                       onClick={removeImage}
                       className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-1.5 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"
                     >
-                      <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
+                      <FaTimes className="h-4 w-4" />
                     </button>
                   </div>
                 ) : (
                   <div className="h-32 w-48 rounded-lg bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center border-2 border-dashed border-gray-300">
-                    <svg className="h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+                    <FaImage className="h-12 w-12 text-gray-400" />
                   </div>
                 )}
                 <div className="flex-1">
@@ -262,9 +259,7 @@ export default function CreatePost() {
                     htmlFor="featured-image"
                     className="cursor-pointer inline-flex items-center px-4 py-2 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 bg-white hover:bg-gray-50 focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-primary-500 transition-all duration-200"
                   >
-                    <svg className="h-5 w-5 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                    </svg>
+                    <FaImage className="h-5 w-5 mr-2 text-gray-400" />
                     {imagePreview ? 'Change Image' : 'Upload Image'}
                   </label>
                   <input
@@ -292,9 +287,7 @@ export default function CreatePost() {
                   onClick={() => setShowNewCategoryModal(true)}
                   className="inline-flex items-center text-sm font-medium text-primary-600 hover:text-primary-700"
                 >
-                  <svg className="h-4 w-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                  </svg>
+                  <FaPlus className="h-4 w-4 mr-1" />
                   Create New
                 </button>
               </div>
@@ -408,17 +401,12 @@ export default function CreatePost() {
                 >
                   {aiGenerating ? (
                     <>
-                      <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                      </svg>
+                      <FaSpinner className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" />
                       Generating...
                     </>
                   ) : (
                     <>
-                      <svg className="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                      </svg>
+                      <FaBolt className="-ml-1 mr-2 h-5 w-5" />
                       Generate with AI
                     </>
                   )}

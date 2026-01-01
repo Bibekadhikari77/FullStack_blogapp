@@ -5,6 +5,7 @@ import { format } from 'date-fns';
 import api from '../utils/api';
 import { useAuth } from '../contexts/AuthContext';
 import toast from 'react-hot-toast';
+import { FaEye, FaHeart, FaComment, FaImage, FaClock } from 'react-icons/fa';
 
 interface PostCardProps {
   post: {
@@ -114,9 +115,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
               <div className="absolute top-0 -left-4 w-72 h-72 bg-white rounded-full mix-blend-multiply filter blur-xl animate-pulse" />
               <div className="absolute bottom-0 right-0 w-72 h-72 bg-yellow-200 rounded-full mix-blend-multiply filter blur-xl animate-pulse animation-delay-2000" />
             </div>
-            <svg className="relative w-20 h-20 text-white opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
+            <FaImage className="relative w-20 h-20 text-white opacity-60" />
           </div>
         )}
       </Link>
@@ -130,9 +129,7 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
           </Link>
           <span className="text-gray-300">•</span>
           <div className="flex items-center text-xs text-gray-500">
-            <svg className="w-3.5 h-3.5 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+            <FaClock className="w-3.5 h-3.5 mr-1" />
             {format(new Date(post.createdAt), 'MMM dd, yyyy')}
           </div>
         </div>
@@ -185,19 +182,10 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
               }`}
               title={liked ? 'Unlike' : 'Like'}
             >
-              <svg
+              <FaHeart
                 className="w-4 h-4 sm:w-5 sm:h-5"
                 fill={liked ? 'currentColor' : 'none'}
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                />
-              </svg>
+              />
               <span className="font-semibold text-xs sm:text-sm">{currentLikesCount}</span>
             </button>
             
@@ -206,32 +194,12 @@ const PostCard: React.FC<PostCardProps> = ({ post, onLikeUpdate }) => {
               className="flex items-center space-x-1 sm:space-x-1.5 text-gray-500 hover:text-primary-600 transition-all transform hover:scale-110"
               title="Comments"
             >
-              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
-                />
-              </svg>
+              <FaComment className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="font-semibold text-xs sm:text-sm">{post.commentsCount || 0}</span>
             </button>
             
             <div className="flex items-center space-x-1 sm:space-x-1.5 text-gray-500" title="Views">
-              <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                />
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
-                />
-              </svg>
+              <FaEye className="w-4 h-4 sm:w-5 sm:h-5" />
               <span className="font-semibold text-xs sm:text-sm">{post.views}</span>
             </div>
           </div>

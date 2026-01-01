@@ -36,7 +36,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     checkAuth();
   }, []);
 
-  const checkAuth = async () => {
+  const checkAuth = React.useCallback(async () => {
     const token = Cookies.get('token');
     if (token) {
       try {
@@ -44,12 +44,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(response.data.user);
       } catch (error) {
         Cookies.remove('token');
+        setUser(null);
       }
     }
     setLoading(false);
-  };
+  }, []);
 
-  const login = async (email: string, password: string) => {
+  const login = React.useCallback(async (email: string, password: string) => {
     try {
       const response = await api.post('/auth/login', { email, password });
       const { token, user } = response.data;
@@ -63,36 +64,42 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       toast.error(message);
       throw error;
     }
-  };
+  }, [router]);
 
-  const register = async (name: string, email: string, password: string, role: string = 'reader', avatar?: string) => {
+  const register = React.useCallback(async (name: string, email: string, password: string, role: string = 'reader', avatar?: string) => {
     try {
       const response = await api.post('/auth/register', { name, email, password, role, avatar });
-      const { token, user } = response.data;
+      const { token, user: userData } = response.data;
       
+      // Set cookie with token
       Cookies.set('token', token, { expires: 7 });
-      setUser(user);
-      toast.success('Registration successful!');
-      router.push('/');
+      
+      // Update user state
+      setUser(userData);
+      
+      toast.success('Registration successful! Welcome to BlogPlatform!');
+      
+      // Use window.location for full page reload to ensure auth state is properly synced
+      window.location.href = '/';
     } catch (error: any) {
       const message = error.response?.data?.message || 'Registration failed';
       toast.error(message);
       throw error;
     }
-  };
+  }, []);
 
-  const logout = () => {
+  const logout = React.useCallback(() => {
     Cookies.remove('token');
     setUser(null);
     toast.success('Logged out successfully');
     router.push('/login');
-  };
+  }, [router]);
 
-  const updateUser = (userData: Partial<User>) => {
+  const updateUser = React.useCallback((userData: Partial<User>) => {
     setUser((prev) => (prev ? { ...prev, ...userData } : null));
-  };
+  }, []);
 
-  const value = {
+  const value = React.useMemo(() => ({
     user,
     loading,
     login,
@@ -102,7 +109,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     isAuthenticated: !!user,
     isAuthor: user?.role === 'author' || user?.role === 'admin',
     isAdmin: user?.role === 'admin',
-  };
+  }), [user, loading, login, register, logout, updateUser]);
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

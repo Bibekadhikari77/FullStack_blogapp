@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import api from '../utils/api';
 import toast from 'react-hot-toast';
+import { FaSearch, FaFolder, FaArrowRight, FaChevronUp, FaChevronDown, FaArrowLeft } from 'react-icons/fa';
 
 export default function Categories() {
   const [categories, setCategories] = useState<any[]>([]);
@@ -72,38 +73,18 @@ export default function Categories() {
               onChange={(e) => setSearchQuery(e.target.value)}
               className="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
             />
-            <svg
+            <FaSearch
               className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-              />
-            </svg>
+            />
           </div>
         </div>
 
         {/* Categories Grid */}
         {filteredCategories.length === 0 ? (
           <div className="text-center py-12">
-            <svg
+            <FaFolder
               className="mx-auto h-12 w-12 text-gray-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"
-              />
-            </svg>
+            />
             <h3 className="mt-2 text-sm font-medium text-gray-900">No categories</h3>
             <p className="mt-1 text-sm text-gray-500">
               {searchQuery ? 'No categories match your search.' : 'No categories have been created yet.'}
@@ -139,19 +120,9 @@ export default function Categories() {
                   {/* View Posts Link */}
                   <div className="flex items-center text-primary-600 group-hover:text-purple-600 font-medium mt-auto">
                     <span>View Posts</span>
-                    <svg
+                    <FaArrowRight
                       className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 5l7 7-7 7"
-                      />
-                    </svg>
+                    />
                   </div>
                 </div>
               </Link>
@@ -168,16 +139,12 @@ export default function Categories() {
                 {showMore ? (
                   <>
                     <span>Show Less</span>
-                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 15l7-7 7 7" />
-                    </svg>
+                    <FaChevronUp className="w-5 h-5 ml-2" />
                   </>
                 ) : (
                   <>
                     <span>Show More ({hiddenCount})</span>
-                    <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
+                    <FaChevronDown className="w-5 h-5 ml-2" />
                   </>
                 )}
               </button>
@@ -192,19 +159,9 @@ export default function Categories() {
             href="/"
             className="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium"
           >
-            <svg
+            <FaArrowLeft
               className="w-5 h-5 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
-            </svg>
+            />
             Back to Home
           </Link>
         </div>
