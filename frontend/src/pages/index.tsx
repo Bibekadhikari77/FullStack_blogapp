@@ -72,6 +72,7 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedTag, setSelectedTag] = useState('');
   const [showMoreCategories, setShowMoreCategories] = useState(false);
+  const [showMoreViewedPosts, setShowMoreViewedPosts] = useState(false);
 
   // Initialize from URL query parameters
   useEffect(() => {
@@ -148,6 +149,15 @@ export default function Home() {
   const hiddenCategoriesCount = useMemo(() => {
     return Math.max(0, categories.length - 6);
   }, [categories.length]);
+
+  // Memoize visible most viewed posts
+  const visibleMostViewedPosts = useMemo(() => {
+    return showMoreViewedPosts ? mostViewedPosts : mostViewedPosts.slice(0, 6);
+  }, [mostViewedPosts, showMoreViewedPosts]);
+
+  const hiddenViewedPostsCount = useMemo(() => {
+    return Math.max(0, mostViewedPosts.length - 6);
+  }, [mostViewedPosts.length]);
 
   const handleSearch = useCallback((e: React.FormEvent) => {
     e.preventDefault();
@@ -299,34 +309,44 @@ export default function Home() {
                 </div>
                 <div className="space-y-3">
                   {mostViewedPosts.length > 0 ? (
-                    mostViewedPosts.map((post, index) => (
-                      <Link
-                        key={post._id}
-                        href={`/posts/${post.slug}`}
-                        className="block p-3 rounded-xl hover:bg-gradient-to-r hover:from-primary-50 hover:to-purple-50 transition-all duration-200 group border border-transparent hover:border-primary-100"
-                      >
-                        <div className="flex items-start space-x-3">
-                          <span className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-primary-600 to-purple-600 text-white rounded-lg flex items-center justify-center text-xs font-bold shadow-sm group-hover:scale-110 transition-transform">
-                            {index + 1}
-                          </span>
-                          <div className="flex-1 min-w-0">
-                            <h4 className="text-sm font-medium text-gray-900 line-clamp-2 group-hover:text-primary-600 transition-colors">
-                              {post.title}
-                            </h4>
-                            <div className="flex items-center mt-2 text-xs text-gray-500 space-x-3">
-                              <span className="flex items-center space-x-1">
-                                <span>👁</span>
-                                <span className="font-medium">{post.views}</span>
-                              </span>
-                              <span className="flex items-center space-x-1">
-                                <span>❤️</span>
-                                <span className="font-medium">{post.likesCount}</span>
-                              </span>
+                    <>
+                      {visibleMostViewedPosts.map((post, index) => (
+                        <Link
+                          key={post._id}
+                          href={`/posts/${post.slug}`}
+                          className="block p-3 rounded-xl hover:bg-gradient-to-r hover:from-primary-50 hover:to-purple-50 transition-all duration-200 group border border-transparent hover:border-primary-100"
+                        >
+                          <div className="flex items-start space-x-3">
+                            <span className="flex-shrink-0 w-7 h-7 bg-gradient-to-br from-primary-600 to-purple-600 text-white rounded-lg flex items-center justify-center text-xs font-bold shadow-sm group-hover:scale-110 transition-transform">
+                              {index + 1}
+                            </span>
+                            <div className="flex-1 min-w-0">
+                              <h4 className="text-sm font-medium text-gray-900 line-clamp-2 group-hover:text-primary-600 transition-colors">
+                                {post.title}
+                              </h4>
+                              <div className="flex items-center mt-2 text-xs text-gray-500 space-x-3">
+                                <span className="flex items-center space-x-1">
+                                  <span>👁</span>
+                                  <span className="font-medium">{post.views}</span>
+                                </span>
+                                <span className="flex items-center space-x-1">
+                                  <span>❤️</span>
+                                  <span className="font-medium">{post.likesCount}</span>
+                                </span>
+                              </div>
                             </div>
                           </div>
-                        </div>
-                      </Link>
-                    ))
+                        </Link>
+                      ))}
+                      {hiddenViewedPostsCount > 0 && (
+                        <button
+                          onClick={() => setShowMoreViewedPosts(!showMoreViewedPosts)}
+                          className="block w-full text-center px-4 py-2 bg-blue-600 text-white hover:bg-blue-700 rounded-lg font-medium text-sm transition-colors duration-200 mt-3"
+                        >
+                          {showMoreViewedPosts ? 'Show Less' : `See More (${hiddenViewedPostsCount})`}
+                        </button>
+                      )}
+                    </>
                   ) : (
                     <p className="text-sm text-gray-500 text-center py-4">No posts available</p>
                   )}
